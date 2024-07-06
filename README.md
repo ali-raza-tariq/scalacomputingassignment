@@ -26,10 +26,24 @@ The goals for this assignment are:
 
 Demonstrate the operation of your program using the following inputs: the hikers cross 3 bridges, at the first bridge (100 ft long) 4 hikers cross (hiker A can cross at 100 ft/minute, B at 50 ft/minute, C at 20 ft/minute, and D at 10 ft/minute), at the second bridge (250 ft long) an additional hiker crosses with the team (E at 2.5 ft/minute), and finally at the last bridge (150 ft long) two hikers are encountered (F at 25 ft/minute and G at 15 ft/minute).
 
+## Custom Input
+Configure the number of bridges that need to be traversed.
+```
+int numBridges = 3;
+```
+Provide the length of individual bridges.
+```
+int bridgeLengths[] = {100,250,150};
+```
+Provide the individual moving speeds of hikers at every bridge.
+```
+string hikers[] = {"100,50,20,10","2.5","25,15"};
+```
+
 -----
 
 ## Comments & concerns
 
-The original problem stated that program inputs need to be read froom yaml file but since i did not have a sample input, I have modified the input method in this submission. I can port to the yaml input format if needed.
+The original problem stated that program inputs need to be read from yaml file but since i did not have a sample input, I have modified the input method in this submission. I can port to the yaml input format if needed.
 
 
