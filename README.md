@@ -5,8 +5,8 @@
 
 ```
 $ cd scalacomputingassignment
-$ g++ main.cpp -std=c++11
-$ ./a.out
+$ make
+$ ./main test1.yaml
 ```
 
 ## Introduction
