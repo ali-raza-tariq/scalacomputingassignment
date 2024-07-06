@@ -35,7 +35,7 @@ Provide the length of individual bridges.
 ```
 int bridgeLengths[] = {100,250,150};
 ```
-Provide the individual moving speeds of hikers at every bridge.
+Provide the individual moving speeds of new arriving hikers at every bridge.
 ```
 string hikers[] = {"100,50,20,10","2.5","25,15"};
 ```
