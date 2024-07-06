@@ -29,21 +29,32 @@ Demonstrate the operation of your program using the following inputs: the hikers
 ## Custom Input
 Configure the number of bridges that need to be traversed.
 ```
-int numBridges = 3;
+numBridges: 
+    - 3
 ```
 Provide the length of individual bridges.
 ```
-int bridgeLengths[] = {100,250,150};
+bridgeLengths: 
+    - 100
+    - 250
+    - 150
 ```
 Provide the individual moving speeds of new arriving hikers at every bridge.
 ```
-string hikers[] = {"100,50,20,10","2.5","25,15"};
+hikersSpeedsAtEachBridge: 
+    - 100,50,20,10
+    - 2.5
+    - 25,15
 ```
+
+## Test case files
+
+`test1.yaml`, `test2.yaml`, `test3.yaml` present different test cases. You can modify any of these input files to update your test case.
 
 -----
 
 ## Comments & concerns
 
-The original problem stated that program inputs need to be read from yaml file but since i did not have a sample input, I have modified the input method in this submission. I can port to the yaml input format if needed.
+The original problem stated that program inputs need to be read from yaml file but since i did not have a sample input, I have a simple yaml input file format in this submission. I can port to different yaml input format if needed.
 
 
