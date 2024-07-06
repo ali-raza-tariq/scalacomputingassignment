@@ -1,7 +1,7 @@
 #include "./stdc++.h"
 
 using namespace std;
-int finalTime = 99999;
+int minimumTimeOfBridge = 99999;
 
 vector<float> getVectorFromInputString(vector<float> people, string s){
 	/*
@@ -72,8 +72,8 @@ int passBridge(string state, vector<float> people, int timeTaken, int distance) 
 
 				// clearing condition: check if all hikers have moved to the right. If true, compare the time incurred.
         if (tempState.find('L') == string::npos) {
-        	if (tempTimeTaken < finalTime) {
-			  		finalTime = tempTimeTaken;
+        	if (tempTimeTaken < minimumTimeOfBridge) {
+			  		minimumTimeOfBridge = tempTimeTaken;
 			  	}
         } else {
 					// backward pass: find the fastest hiker present on right-side to carry back the torch and update the state.
@@ -106,6 +106,7 @@ int main () {
 	// variables
   string state = "";
 	vector<float> people;
+	float totalTime = 0;
 
 	// main logic
   int counter = 0;
@@ -113,14 +114,14 @@ int main () {
   	people = getVectorFromInputString(people, hikers[counter]);
   	state = getStateString(people, state);
 	  passBridge(state, people, 0, bridgeLengths[counter]);
-		cout<<"Time taken to cross "<<counter<<" bridge: "<<finalTime<<endl;
-
+		cout<<"Time taken to cross "<<counter<<" bridge: "<<minimumTimeOfBridge<<endl;
+		totalTime = totalTime + minimumTimeOfBridge;
 		// reseting state for next bridge
 		state = "";
-	  finalTime = 999;
+	  minimumTimeOfBridge = 999;
   	counter++;
   }
-
+  cout<<"It took "<<totalTime<<" minutes to complete all crossings."<<endl;
 
 
 }
