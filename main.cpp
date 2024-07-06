@@ -1,7 +1,42 @@
 #include "./stdc++.h"
 
 using namespace std;
-int minimumTimeOfBridge = 99999;
+int minimumTimeOfBridge = INT_MAX;
+
+void getVectorFromFile(string filename, string variable, vector<string> &returnString){
+	ifstream file(filename); 
+  
+    // String to store each line of the file. 
+    string line; 
+    string tempStr;
+  	string delimiter = "-";
+    if (file.is_open()) { 
+        // Read each line from the file and store it in the 
+        // 'line' variable. 
+    		int gotField = 0;
+        while (getline(file, line)) { 
+        		if (line.find(variable) != string::npos) {
+        			gotField = 1;
+        		} else if (gotField == 1 && line.find(delimiter)!= string::npos) {
+        			tempStr = line.erase(0, line.find(delimiter) + delimiter.length());
+        			returnString.push_back(tempStr);
+        			tempStr = "";
+        		} else {
+        			gotField = 0;
+        		}
+        } 
+        // Close the file stream once all lines have been 
+        // read. 
+        file.close(); 
+	
+    } 
+    else { 
+        // Print an error message to the standard error 
+        // stream if the file cannot be opened. 
+        cerr << "Unable to open file!" << endl; 
+    }
+  
+}
 
 vector<float> getVectorFromInputString(vector<float> people, string s){
 	/*
@@ -77,7 +112,7 @@ int passBridge(string state, vector<float> people, int timeTaken, int distance) 
 			  	}
         } else {
 					// backward pass: find the fastest hiker present on right-side to carry back the torch and update the state.
-		      int rightMax = -999;
+		      int rightMax = -INT_MAX;
 					int rightMaxIndex = 0;
 					for(int k=0;k<people.size();k++){
 						if (tempState[k]=='R' and rightMax<people[k]) {
@@ -97,11 +132,27 @@ int passBridge(string state, vector<float> people, int timeTaken, int distance) 
 	return 0; 
 }
 
-int main () {
-  // inputs
-	int numBridges = 3;
-	int bridgeLengths[] = {100,250,150};
-	string hikers[] = {"100,50,20,10","2.5","25,15"};
+int main (int argc, char const *argv[]) {
+  // inputs reading from yaml file
+	vector<string> returnString;
+	getVectorFromFile(argv[1], "numBridges", returnString);
+
+	int numBridges = stoi(returnString[0]);	
+
+  returnString.clear();
+	getVectorFromFile(argv[1], "bridgeLengths", returnString);
+	vector<int> bridgeLengths;
+	for (int i=0;i<returnString.size();i++){
+		bridgeLengths.push_back(stoi(returnString[i]));
+	}
+
+	returnString.clear();
+	getVectorFromFile(argv[1], "hikersSpeedsAtEachBridge", returnString);
+	vector<string> hikers;
+	for (int i=0;i<returnString.size();i++){
+		hikers.push_back(returnString[i]);
+	}
+
 
 	// variables
   string state = "";
@@ -118,7 +169,7 @@ int main () {
 		totalTime = totalTime + minimumTimeOfBridge;
 		// reseting state for next bridge
 		state = "";
-	  minimumTimeOfBridge = 999;
+	  minimumTimeOfBridge = INT_MAX;
   	counter++;
   }
   cout<<"It took "<<totalTime<<" minutes to complete all crossings."<<endl;

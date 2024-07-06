@@ -1,0 +1,6 @@
+numBridges: 
+    - 1
+bridgeLengths: 
+    - 100
+hikersSpeedsAtEachBridge: 
+    - 100,50,20,10
